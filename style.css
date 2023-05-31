@@ -59,6 +59,35 @@ body {
     color: white;
     font-size: 32px;
     font-weight: 200;
-    border: 1px solid grey;
+}
+
+.todo__list {
+}
+.todo__task {
+    display: flex;
+    align-items: center;
+    --size: 36px;
+    min-height: var(--size);
+}
+.todo__checkbox {
+    margin-right: 16px;
+}
+.todo__task-text {
+    font-size: 20px;
+}
+.todo__task-del {
+    display: none;
+    margin-left: auto;
+    margin-right: 0;
+    cursor: pointer;
+    text-align: center;
+    line-height: calc(var(--size) * 0.88);
+    height: var(--size);
+    width: var(--size);
+    border-radius: var(--size);
+    background: var(--accent);
+    color: white;
+    font-size: 32px;
+    font-weight: 200;
 }
 
