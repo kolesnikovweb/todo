@@ -27,12 +27,7 @@ body {
     border-radius: 16px;
 }
 
-.todo {
-}
-.todo__content {
-}
-.todo__title {
-}
+
 .todo__new {
     display: flex;
     padding: 16px 0 32px;
@@ -61,16 +56,53 @@ body {
     font-weight: 200;
 }
 
-.todo__list {
+.todo__list > *:not(:last-child) {
+    margin-bottom: 8px;
 }
 .todo__task {
+    cursor: default;
     display: flex;
     align-items: center;
     --size: 36px;
     min-height: var(--size);
 }
+
+.todo__task:hover .todo__task-del {
+    display: block;
+}
 .todo__checkbox {
     margin-right: 16px;
+}
+.todo__checkbox input {
+    display: none;
+}
+.todo__checkbox input:checked + div {
+    background-color: var(--accent);
+
+}
+.todo__checkbox input:checked + div::after {
+    display: block;
+}
+.todo__checkbox div {
+    cursor: pointer;
+    --size: 28px;
+    width: var(--size);
+    height: var(--size);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    position: relative;
+    color: white;
+}
+.todo__checkbox div::after {
+    content: '\2713';
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
 }
 .todo__task-text {
     font-size: 20px;
