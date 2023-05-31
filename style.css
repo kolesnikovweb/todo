@@ -107,6 +107,10 @@ body {
 .todo__task-text {
     font-size: 20px;
 }
+.todo__task_complete .todo__task-text {
+    text-decoration: line-through;
+    color: grey;
+}
 .todo__task-del {
     display: none;
     margin-left: auto;
