@@ -21,14 +21,15 @@ const tasks = [];
 dom.add.onclick = () => {
     const newTaskText = dom.new.value;
     if(newTaskText && isNotHaveTask(newTaskText, tasks)) {
-        addTask(newTaskText);
+        addTask(newTaskText, tasks);
         dom.new.value = ''
+        tasksRender(tasks);
     }
 }
 
 // Функция добавить задачу 
 
-function addTask(text) {
+function addTask(text, list) {
     let timestamp = Date.now();
     const task = {
         id: timestamp,
@@ -36,9 +37,7 @@ function addTask(text) {
         isComplate: false,
     }
 
-    tasks.push(task)
-    console.log(tasks);
-
+    list.push(task)
 }
 
 // Проверка на повтарение задачи в массиве задач 
@@ -54,4 +53,49 @@ function isNotHaveTask(text, list) {
         }
     })
     return isNotHave
+}
+
+// Функция вывода списка задач
+
+// function tasksRender(list) {
+//     const cls = task.isComplate ? 'todo__task todo__task_complate' : 'todo__task'
+//     const taskHtml = `
+    
+//     <div id="${task.id}" class="${cls}">
+//         <label class="todo__checkbox">
+//             <input type="checkbox" checked="${task.isComplate}">  
+//             <div></div>                      
+//         </label>
+//         <div class="todo__task-text">${task.text}</div>
+//         <div class="todo__task-del">-</div>
+//     </div>
+    
+//     `
+
+// }
+
+
+function tasksRender(list) {
+    let htmlList = ''
+
+    list.forEach((task) => {
+        const cls = task.isComplate ? 'todo__task todo__task_complate' : 'todo__task'
+        const checked = task.isComplate ? 'checked' : ''
+        const taskHtml = `
+        
+        <div id="${task.id}" class="${cls}">
+            <label class="todo__checkbox">
+                <input type="checkbox" ${checked}>  
+                <div></div>                      
+            </label>
+            <div class="todo__task-text">${task.text}</div>
+            <div class="todo__task-del">-</div>
+        </div>
+        
+        `
+
+        htmlList = htmlList + taskHtml;
+    })
+
+    dom.tasks.innerHTML = htmlList
 }
